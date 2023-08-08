@@ -49,29 +49,27 @@ int handle_tokens(char* lineptr, char *env[])
 		token_count++;
 		token = strtok(NULL, delimiter);
 	}
-printf("im before the for\n");
-	/* Execute built-in command if found */
-	for (int i = 0; i < 4, built_in_found == false; i++)
-    	{
-		if (strcmp(tokens[0], built_in_commands[i].name) == 0)
-		{
-			built_in_commands[i].handler(tokens);
-			built_in_found = true;
+		/* Execute built-in command if found */
+		for (int i = 0; i < 4, built_in_found == false; i++)
+	    	{
+			if (strcmp(tokens[0], built_in_commands[i].name) == 0)
+			{
+				built_in_commands[i].handler(tokens);
+				built_in_found = true;
+			}
 		}
-	}
 
-printf("im outsid the for\n");	
-	if (built_in_found == false)
-		printf("Executing other command: %s\n", tokens[0]);
+		if (built_in_found == false)
+			printf("Executing other command: %s\n", tokens[0]);
 
-	built_in_found == true;
-	/* Free the dynamically allocated memory for each token */
-	for (int i = 0; i < token_count; i++)
-	{
-		free(tokens[i]);
-	}
+		built_in_found == true;
+		/* Free the dynamically allocated memory for each token */
+		for (int i = 0; i < token_count; i++)
+		{
+			free(tokens[i]);
+		}
 
-	/* Free the dynamically allocated memory for the tokens array*/
-	free(tokens);
-	return (0);
+		/* Free the dynamically allocated memory for the tokens array*/
+		free(tokens);
+		return (0);
 }

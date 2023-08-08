@@ -43,22 +43,11 @@ int main(int ac, char **av, char **env)
 			 exit(-1);
 		}
 	
-		//if (fgets(input, sizeof(input), stdin) == NULL)
-		//{
-		//	perror("fgets");
-		//	exit(1);
-		//}
-
-		/*input[strcspn(input, "\n")] = '\0';  rm trailing newline */
-		/*if (strcmp(input, "exit") == 0)  Check user wants to exit */
-		//	break;
-
 		pid = fork(); /* Create a child process */
 		if (pid < 0) /* fork failed */
 			return (1);
 		else if (pid == 0)
 		{ /* Child process */
-	printf("in child");
 			handle_tokens(lineptr, env);
 			exit(0);
 		}
