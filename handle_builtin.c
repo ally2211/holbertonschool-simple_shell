@@ -10,22 +10,22 @@ bool handle_exit(char *tokens[])
 {
 	bool is_interactive;
 
-        printf("Exiting the shell.\n");
-        is_interactive = false;
-	exit (0);
+	printf("Exiting the shell.\n");
+	is_interactive = false;
+	exit(0);
 	return (true);
 }
 
 /**
  * handle_env - Handle the "env" built-in command.
  * @tokens: An array of tokens from the input string.
- 
+ *
  * Return:  true
  */
-bool handle_env(char *tokens[]) 
+bool handle_env(char *tokens[])
 {
-	printf("Environment variables:\n");
-	char* envp[] = { NULL };
+	char *envp[] = { NULL };
+
 	for (int i = 0; envp[i] != NULL; i++)
 	{
 		printf("%s\n", envp[i]);
@@ -37,7 +37,7 @@ bool handle_env(char *tokens[])
  * handle_echo - Handle the "echo" built-in command.
  * @tokens: An array of tokens from the input string.
  *
- * Return: true 
+ * Return: true
  */
 bool handle_echo(char *tokens[])
 {
@@ -59,7 +59,7 @@ bool handle_cd(char *tokens[])
 {
 	if (tokens[1] == NULL)
 		chdir(getenv("HOME"));
-	else 
+	else
 	{
 		if (chdir(tokens[1]) == -1)
 			perror("cd");

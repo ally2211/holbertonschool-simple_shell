@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * main - Entry point of the shell program
  * @ac: The number of command-line arguments (unused)
@@ -20,9 +19,7 @@ int main(int ac, char **av, char **env)
 
 	n = 0;
 	lineptr = NULL;
-
-	/* Determine if it's interactive*/
-	if (isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO)) /* Determine if it's interactive*/
 	{
 		printf("%s", prompt);
 		is_interactive = true;
@@ -30,19 +27,14 @@ int main(int ac, char **av, char **env)
 	}
 	else
 		is_interactive = false;
-
 	while (1)
 	{
-		//char input[256];
-
 		nchars_read = getline(&lineptr, &n, stdin);
-		/* check if the getline function failed or reached EOF or user use CTRL + D */
-		if (nchars_read == -1)
+		if (nchars_read == -1) /*check failed*/
 		{
 			printf("Exiting shell....\n");
 			 exit(-1);
 		}
-	
 		pid = fork(); /* Create a child process */
 		if (pid < 0) /* fork failed */
 			return (1);
@@ -64,5 +56,5 @@ int main(int ac, char **av, char **env)
 		}
 	}
 	free(lineptr);
-	return(0);
+	return (0);
 }

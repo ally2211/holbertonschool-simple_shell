@@ -15,16 +15,13 @@ bool handle_env(char *tokens[]);
 bool handle_echo(char *tokens[]);
 bool handle_cd(char *tokens[]);
 void handle_PATH(char *tokens[], char *env[]);
-
-typedef bool (*CommandHandler)(char**);
-
-typedef struct {
-    char *name;
-    CommandHandler handler;
+typedef bool (*CommandHandler)(char **);
+typedef struct
+{
+	char *name;
+	CommandHandler handler;
 } Command;
-
 extern Command built_in_commands[];
 extern int token_count;
 extern bool is_interactive;
-
 #endif
