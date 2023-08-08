@@ -7,6 +7,20 @@ The approach we took after taking time to understand the requirements and going 
 
 
 
+## Authors
+
+DeVaughn
+- [@coolgray06](https://www.github.com/coolgray06)
+
+![authorDeVaughn](https://github.com/ally2211/holbertonschool-simple_shell/assets/37552860/e7fa5d7c-0d29-4f16-9f3d-0808611a2010)
+
+Allyson Elisa
+
+- [@ally2211](https://www.github.com/ally2211)
+
+![authorAllysonE](https://github.com/ally2211/holbertonschool-simple_shell/assets/37552860/f5275840-b8da-450d-8fc2-9cd0029be7c9)
+
+
 ## Table of Contents
 
 - Section 1:  Flowcharting and README
@@ -17,10 +31,9 @@ The approach we took after taking time to understand the requirements and going 
 
 ## Section 1:  Flowcharting
 
-Flowcharting and writing this README.md file.
+Flowcharting - Section 2
 
-( not sure if there is a way to add a flowchart here)
-
+![flowchart_1](https://github.com/ally2211/holbertonschool-simple_shell/assets/131308234/03fc88e2-7044-4829-938c-fced35949d7e)
 
 ## Section 2:  Process flow
 
