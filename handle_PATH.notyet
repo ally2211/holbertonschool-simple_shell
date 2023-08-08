@@ -1,0 +1,49 @@
+#include "main.h"
+
+/**
+ * handle_PATH - Handle other using PATH env.
+ * @tokens: An array of tokens from the input string.
+ */
+void handle_PATH(char *tokens[], char *env[])
+{
+        printf("Executing other built-in command: %s\n", tokens[0]);
+
+        char *path_env = NULL;
+        char *path_copy = strdup(path_env);
+        char *path_token = strtok(path_copy, ":");
+        char command_path[1024];
+
+        for (int i = 0; env[i] != NULL; i++)
+        {
+                if (strncmp(env[i], "PATH=", 5) == 0)
+                {
+                        /* Point to the value after "PATH=" */
+                        path_env = &env[i][5];
+                        break;
+                }
+        }
+
+        if (path_env == NULL)
+        {
+                fprintf(stderr, "PATH environment variable not found.\n");
+                exit(EXIT_FAILURE);
+        }
+
+        /* Check each directory in PATH for the executable */
+        while (path_token != NULL)
+        {
+                strncpy(command_path, path_token, sizeof(command_path));
+                strncat(command_path, "/", sizeof(command_path) - strlen(command_path) - 1);
+                strncat(command_path, tokens[0], sizeof(command_path) - strlen(command_path) - 1);
+
+                /* Attempt to execute the command */
+                execve(command_path, tokens, NULL);
+
+                /* Move to the next directory in PATH */
+                path_token = strtok(NULL, ":");
+        }
+
+        /*  command was not found in any of the directories */
+        fprintf(stderr, "Command not found: %s\n", tokens[0]);
+        free(path_copy);
+}
