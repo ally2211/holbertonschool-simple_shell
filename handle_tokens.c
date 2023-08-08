@@ -5,7 +5,7 @@ Command built_in_commands[3] = {
 	{"env", handle_env},
 	{"echo", handle_echo}
 };
-/*
+/**
  * handle_tokens - Procedure to tokenize the input string
  * @lineptr: input string
  * @env: environ

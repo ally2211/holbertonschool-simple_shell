@@ -9,13 +9,11 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char *prompt = "($) ";
-	char *lineptr;
-	int status;
+	char *prompt = "($) ", *lineptr;
+	int status, nchars_read;
 	bool is_interactive;
 	pid_t pid;
 	size_t n;
-	int nchars_read;
 
 	n = 0;
 	lineptr = NULL;
@@ -30,11 +28,8 @@ int main(int ac, char **av, char **env)
 	while (1)
 	{
 		nchars_read = getline(&lineptr, &n, stdin);
-		if (nchars_read == -1) /*check failed*/
-		{
-			printf("Exiting shell....\n");
-			 exit(-1);
-		}
+		if (nchars_read == -1)
+			exit(-1);
 		pid = fork(); /* Create a child process */
 		if (pid < 0) /* fork failed */
 			return (1);
@@ -46,13 +41,10 @@ int main(int ac, char **av, char **env)
 		else
 		{ /* Parent process - wait for the child process to finish */
 			wait(&status);
-			if (is_interactive)
-			{
-				printf("%s", prompt);
-				fflush(stdout);
-			}
-			else
+			if (is_interactive == false)
 				exit;
+			printf("%s", prompt);
+			fflush(stdout);
 		}
 	}
 	free(lineptr);
