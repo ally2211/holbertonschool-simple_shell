@@ -3,7 +3,6 @@
 int token_count = 0;
 Command built_in_commands[3] = {
 	{"exit", handle_exit},
-	{"env", handle_env},
 	{"echo", handle_echo}
 };
 /**
@@ -13,7 +12,7 @@ Command built_in_commands[3] = {
  *
  * Return: int success is 1
  */
-int handle_tokens(char *lineptr, char *env[] __attribute__((unused)))
+int handle_tokens(char *lineptr, char *env[])
 {
 	char *token, *new_token, **tokens = NULL;
 	const char delimiter[] = " \t\n";
@@ -43,14 +42,18 @@ int handle_tokens(char *lineptr, char *env[] __attribute__((unused)))
 	}
 	for (j = 0; j < sizeof(built_in_commands) / sizeof(Command); ++j) 
 	{
-        	if (strncmp(tokens[0], built_in_commands[j].name, strlen(built_in_commands[j].name)) == 0) 
+		if (strcmp(tokens[0], "env") == 0)
 		{
+			print_env(env);
 			built_in_found = true;
-			built_in_commands[j].handler(tokens);
 		}
+		else if (strncmp(tokens[0], built_in_commands[j].name, strlen(built_in_commands[j].name)) == 0)
+                {
+                        built_in_found = true;
+                        built_in_commands[j].handler(tokens);
+                }
 	}
-
-	if (!built_in_found)
+		if (!built_in_found)
 		handle_execs(tokens);
 
 	for (i = 0; i < token_count; i++)

@@ -13,26 +13,20 @@ bool handle_exit(char *tokens[])
 }
 
 /**
- * handle_env - Handle the "env" built-in command.
- * @tokens: An array of tokens from the input string.
+ * print_env - Handle the "env" built-in command.
  * @env: env var
  *
  * Return:  true
  */
-bool handle_env(char *tokens[])
+void print_env(char *env[])
 {
-	/*int i;*/
-	if (strcmp(tokens[0], "env") == 0)
-		return (true);
-	/*for (i = 0; env[i] != NULL; i++)
-	{
-		printf("%s\n", env[i]);
-	}*/
+        int i;
 
-
-	return (true);
+	for (i = 0; env[i] != NULL; i++)
+        {
+                printf("%s\n", env[i]);
+        }
 }
-
 /**
  * handle_echo - Handle the echo built-in command.
  * @tokens: An array of tokens from the input string.

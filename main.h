@@ -21,7 +21,7 @@ typedef struct
 void handle_builtin(char *lineptr);
 int handle_tokens(char *lineptr, char *env[]);
 bool handle_exit(char *tokens[]);
-bool handle_env(char *tokens[]);
+void print_env(char *env[]);
 bool handle_echo(char *tokens[]);
 void handle_PATH(char *tokens[], char *env[]);
 int handle_execs(char *tokens[]);

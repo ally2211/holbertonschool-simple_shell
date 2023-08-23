@@ -31,8 +31,8 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)), char
 	while (1)
 	{
 		getline(&lineptr, &n, stdin);
-	        if (strncmp(lineptr, "exit\n", 5) == 0)
-			break;
+	       /* if (strncmp(lineptr, "exit\n", 5) == 0)
+			break; */
 		pid = fork(); /* Create a child process */
 		if (pid < 0) /* fork failed */
 			return (1);
