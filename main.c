@@ -10,10 +10,10 @@ pid_t pid;
  *
  * Return: 0 on success, 1 on error
  */
-int main(int ac, char **av, char **env)
+int main(int ac __attribute__((unused)), char **av __attribute__((unused)), char **env)
 {
 	char *prompt = "($) ", *lineptr;
-	int status, nchars_read;
+	int status;
 	size_t n;
 	bool is_interactive;
 
@@ -30,7 +30,7 @@ int main(int ac, char **av, char **env)
 		
 	while (1)
 	{
-		nchars_read = getline(&lineptr, &n, stdin);
+		getline(&lineptr, &n, stdin);
 	        if (strncmp(lineptr, "exit\n", 5) == 0)
 			break;
 		pid = fork(); /* Create a child process */
@@ -45,7 +45,7 @@ int main(int ac, char **av, char **env)
 		{ /* Parent process - wait for the child process to finish */
 			wait(&status);
 			if (is_interactive == false)
-				exit;
+				exit(0);
 			printf("%s", prompt);
 			fflush(stdout);
 		}

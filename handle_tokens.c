@@ -13,12 +13,13 @@ Command built_in_commands[3] = {
  *
  * Return: int success is 1
  */
-int handle_tokens(char *lineptr, char *env[])
+int handle_tokens(char *lineptr, char *env[] __attribute__((unused)))
 {
 	char *token, *new_token, **tokens = NULL;
 	const char delimiter[] = " \t\n";
 	bool built_in_found = false;
-	long unsigned int i;
+	long unsigned int j;
+	int i;
 
 	token = strtok(lineptr, delimiter);
 	while (token != NULL)
@@ -40,12 +41,12 @@ int handle_tokens(char *lineptr, char *env[])
 		token_count++;
 		token = strtok(NULL, delimiter);
 	}
-	for (i = 0; i < sizeof(built_in_commands) / sizeof(Command); ++i) 
+	for (j = 0; j < sizeof(built_in_commands) / sizeof(Command); ++j) 
 	{
-        	if (strncmp(tokens[0], built_in_commands[i].name, strlen(built_in_commands[i].name)) == 0) 
+        	if (strncmp(tokens[0], built_in_commands[j].name, strlen(built_in_commands[j].name)) == 0) 
 		{
 			built_in_found = true;
-			built_in_commands[i].handler(tokens);
+			built_in_commands[j].handler(tokens);
 		}
 	}
 
