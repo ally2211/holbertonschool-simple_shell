@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * handle_exit - Handle the "exit" built-in command.
  * @tokens: An array of tokens from the input string.
@@ -8,10 +7,6 @@
  */
 bool handle_exit(char *tokens[])
 {
-	bool is_interactive;
-
-	printf("Exiting the shell.\n");
-	is_interactive = false;
 	exit(0);
 	return (true);
 }
@@ -19,17 +14,16 @@ bool handle_exit(char *tokens[])
 /**
  * handle_env - Handle the "env" built-in command.
  * @tokens: An array of tokens from the input string.
+ * @env: env var
  *
  * Return:  true
  */
 bool handle_env(char *tokens[])
 {
-	char *envp[] = { NULL };
-
-	for (int i = 0; envp[i] != NULL; i++)
-	{
-		printf("%s\n", envp[i]);
-	}
+	//for (int i = 0; env[i] != NULL; i++)
+	//{
+	//	printf("%s\n", env[i]);
+	//}
 	return (true);
 }
 
@@ -41,30 +35,12 @@ bool handle_env(char *tokens[])
  */
 bool handle_echo(char *tokens[])
 {
-	for (int i = 1; i < token_count; i++)
+	int i;
+
+	for (i = 1; i < token_count; i++)
 	{
 		printf("%s ", tokens[i]);
 	}
 	printf("\n");
-	return (true);
-}
-
-/**
- * handle_cd - Handle the "cd" built-in command.
- * @tokens: An array of tokens from the input string.
- *
- * Return:  true
- */
-bool handle_cd(char *tokens[])
-{
-	if (tokens[1] == NULL)
-		chdir(getenv("HOME"));
-	else
-	{
-		if (chdir(tokens[1]) == -1)
-			perror("cd");
-		else
-			chdir(tokens[1]);
-	}
 	return (true);
 }

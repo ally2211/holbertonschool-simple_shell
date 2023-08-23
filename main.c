@@ -11,9 +11,9 @@ int main(int ac, char **av, char **env)
 {
 	char *prompt = "($) ", *lineptr;
 	int status, nchars_read;
-	bool is_interactive;
 	pid_t pid;
 	size_t n;
+	bool is_interactive;
 
 	n = 0;
 	lineptr = NULL;
@@ -25,11 +25,12 @@ int main(int ac, char **av, char **env)
 	}
 	else
 		is_interactive = false;
+		
 	while (1)
 	{
 		nchars_read = getline(&lineptr, &n, stdin);
-		if (nchars_read == -1)
-			exit(-1);
+	        if (strncmp(lineptr, "exit\n", 5) == 0)
+			break;
 		pid = fork(); /* Create a child process */
 		if (pid < 0) /* fork failed */
 			return (1);

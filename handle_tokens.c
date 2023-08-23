@@ -1,4 +1,5 @@
 #include "main.h"
+
 int token_count = 0;
 Command built_in_commands[3] = {
 	{"exit", handle_exit},
@@ -18,16 +19,17 @@ int handle_tokens(char *lineptr, char *env[])
 	const char delimiter[] = " \t\n";
 	bool built_in_found = false;
 
-	token = strtok(lineptr, delimiter); /* tokenize the input string */
+	token = strtok(lineptr, delimiter);
 	while (token != NULL)
 	{
-		new_token = strdup(token);/* allocate memory for each token*/
+		/*printf("my token is %s\n",token);*/
+		new_token = strdup(token);
 		if (new_token == NULL)
 		{
 			perror("Memory allocation error");
 			exit(1);
 		}
-		tokens = realloc(tokens, (token_count + 1) * sizeof(char *));/* Resize*/
+		tokens = realloc(tokens, (token_count + 1) * sizeof(char *));
 		if (tokens == NULL)
 		{
 			perror("Memory allocation error");
@@ -37,21 +39,22 @@ int handle_tokens(char *lineptr, char *env[])
 		token_count++;
 		token = strtok(NULL, delimiter);
 	}
-		for (int i = 0; i < 4, built_in_found == false; i++) /* Execute built-in*/
+	for (int i = 0; i < sizeof(built_in_commands) / sizeof(Command); ++i) 
+	{
+        	if (strncmp(tokens[0], built_in_commands[i].name, strlen(built_in_commands[i].name)) == 0) 
 		{
-			if (strcmp(tokens[0], built_in_commands[i].name) == 0)
-			{
-				built_in_commands[i].handler(tokens);
-				built_in_found = true;
-			}
+			built_in_found = true;
+			built_in_commands[i].handler(tokens);
 		}
-		if (built_in_found == false)
-			printf("Executing other command: %s\n", tokens[0]);
-		built_in_found == true;
-		for (int i = 0; i < token_count; i++)
-		{
-			free(tokens[i]);
-		}
-		free(tokens);
-		return (0);
+	}
+
+	if (!built_in_found)
+		handle_execs(tokens);
+
+	for (int i = 0; i < token_count; i++)
+	{
+		free(tokens[i]);
+	}
+	free(tokens);
+	return (0);
 }
