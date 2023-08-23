@@ -18,7 +18,7 @@ int handle_tokens(char *lineptr, char *env[])
 	char *token, *new_token, **tokens = NULL;
 	const char delimiter[] = " \t\n";
 	bool built_in_found = false;
-	int i;
+	long unsigned int i;
 
 	token = strtok(lineptr, delimiter);
 	while (token != NULL)

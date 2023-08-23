@@ -7,7 +7,7 @@
  */
 bool handle_exit(char *tokens[])
 {
-	if (tokens[0] == "exit")
+	if (strcmp(tokens[0], "exit") == 0)
 		kill (pid, SIGTERM);
 	return (true);
 }
@@ -22,7 +22,7 @@ bool handle_exit(char *tokens[])
 bool handle_env(char *tokens[])
 {
 	/*int i;*/
-	if (tokens[0] == "env")
+	if (strcmp(tokens[0], "env") == 0)
 		return (true);
 	/*for (i = 0; env[i] != NULL; i++)
 	{
