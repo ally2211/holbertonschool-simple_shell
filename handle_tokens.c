@@ -1,7 +1,7 @@
 #include "main.h"
 
 int token_count = 0;
-Command built_in_commands[3] = {
+Command built_in_commands[2] = {
 	{"exit", handle_exit},
 	{"echo", handle_echo}
 };
@@ -23,7 +23,6 @@ int handle_tokens(char *lineptr, char *env[])
 	token = strtok(lineptr, delimiter);
 	while (token != NULL)
 	{
-		/*printf("my token is %s\n",token);*/
 		new_token = strdup(token);
 		if (new_token == NULL)
 		{
@@ -40,21 +39,24 @@ int handle_tokens(char *lineptr, char *env[])
 		token_count++;
 		token = strtok(NULL, delimiter);
 	}
+	if (strcmp(tokens[0], "env") == 0)
+	{
+		built_in_found = true;
+		print_env(env);
+	}
 	for (j = 0; j < sizeof(built_in_commands) / sizeof(Command); ++j) 
 	{
-		if (strcmp(tokens[0], "env") == 0)
-		{
-			print_env(env);
-			built_in_found = true;
-		}
-		else if (strncmp(tokens[0], built_in_commands[j].name, strlen(built_in_commands[j].name)) == 0)
+		if (strncmp(tokens[0], built_in_commands[j].name, strlen(built_in_commands[j].name)) == 0)
                 {
                         built_in_found = true;
                         built_in_commands[j].handler(tokens);
                 }
 	}
-		if (!built_in_found)
+	if (!built_in_found)
+	{
+		printf("i'm in calling execs");
 		handle_execs(tokens);
+	}
 
 	for (i = 0; i < token_count; i++)
 	{
