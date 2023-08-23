@@ -17,14 +17,14 @@ int handle_execs(char *tokens[])
 		return (1);
     	}
 
-	/* Check if the file is a regular file and has execute permissions */
+	/* Check if the file is a regular file and has execute permissions*/
 	if (!S_ISREG(file_info.st_mode) || !(file_info.st_mode & S_IXUSR)) 
 	{
 		printf("File is not executable\n");
 		return (1);
 	}
 
-	/* Use access() to check if the current user has execute permissions */
+	/* Use access() to check if the current user has execute permissions*/
 	if (access(tokens[0], X_OK) < 0)
 	{
 		perror("access");

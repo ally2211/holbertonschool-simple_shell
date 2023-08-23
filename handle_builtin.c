@@ -32,7 +32,7 @@ bool handle_env(char *tokens[])
 }
 
 /**
- * handle_echo - Handle the "echo" built-in command.
+ * handle_echo - Handle the echo built-in command.
  * @tokens: An array of tokens from the input string.
  *
  * Return: true
