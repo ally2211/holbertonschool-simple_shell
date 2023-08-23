@@ -1,4 +1,7 @@
 #include "main.h"
+
+pid_t pid;
+
 /**
  * main - Entry point of the shell program
  * @ac: The number of command-line arguments (unused)
@@ -11,7 +14,6 @@ int main(int ac, char **av, char **env)
 {
 	char *prompt = "($) ", *lineptr;
 	int status, nchars_read;
-	pid_t pid;
 	size_t n;
 	bool is_interactive;
 

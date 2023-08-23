@@ -28,4 +28,5 @@ int handle_execs(char *tokens[]);
 
 extern Command built_in_commands[];
 extern int token_count;
+extern pid_t pid;
 #endif

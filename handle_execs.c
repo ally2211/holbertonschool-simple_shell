@@ -9,7 +9,6 @@
 int handle_execs(char *tokens[])
 {
 	struct stat file_info;
-	/*printf ("I am in the handle execes:  %s \n", tokens[0]);*/
 
 	/* Use stat() to check if file exists and is executable */
 	if (stat(tokens[0], &file_info) < 0)
@@ -40,5 +39,5 @@ int handle_execs(char *tokens[])
 	}
 
 	/* If execve succeeds, this line won't be reached*/
-	return (0); // Just to suppress compiler warnings
+	return (0); 
 }

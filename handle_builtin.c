@@ -7,7 +7,8 @@
  */
 bool handle_exit(char *tokens[])
 {
-	exit(0);
+	(void) tokens;
+	kill (pid, SIGTERM);
 	return (true);
 }
 
@@ -20,10 +21,13 @@ bool handle_exit(char *tokens[])
  */
 bool handle_env(char *tokens[])
 {
-	//for (int i = 0; env[i] != NULL; i++)
-	//{
-	//	printf("%s\n", env[i]);
-	//}
+	int i;
+	(void) tokens;
+
+	/*for (i = 0; env[i] != NULL; i++)
+	{
+		printf("%s\n", env[i]);
+	}*/
 	return (true);
 }
 
