@@ -18,6 +18,7 @@ int handle_tokens(char *lineptr, char *env[])
 	char *token, *new_token, **tokens = NULL;
 	const char delimiter[] = " \t\n";
 	bool built_in_found = false;
+	int i;
 
 	token = strtok(lineptr, delimiter);
 	while (token != NULL)
@@ -39,7 +40,7 @@ int handle_tokens(char *lineptr, char *env[])
 		token_count++;
 		token = strtok(NULL, delimiter);
 	}
-	for (int i = 0; i < sizeof(built_in_commands) / sizeof(Command); ++i) 
+	for (i = 0; i < sizeof(built_in_commands) / sizeof(Command); ++i) 
 	{
         	if (strncmp(tokens[0], built_in_commands[i].name, strlen(built_in_commands[i].name)) == 0) 
 		{
@@ -51,7 +52,7 @@ int handle_tokens(char *lineptr, char *env[])
 	if (!built_in_found)
 		handle_execs(tokens);
 
-	for (int i = 0; i < token_count; i++)
+	for (i = 0; i < token_count; i++)
 	{
 		free(tokens[i]);
 	}

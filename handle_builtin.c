@@ -21,7 +21,7 @@ bool handle_exit(char *tokens[])
  */
 bool handle_env(char *tokens[])
 {
-	int i;
+	/*int i;*/
 	(void) tokens;
 
 	/*for (i = 0; env[i] != NULL; i++)
