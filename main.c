@@ -27,7 +27,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)), char
 	}
 	else
 		is_interactive = false;
-		
+	
 	while (1)
 	{
 		getline(&lineptr, &n, stdin);

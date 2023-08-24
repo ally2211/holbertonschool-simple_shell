@@ -53,15 +53,11 @@ int handle_tokens(char *lineptr, char *env[])
                 }
 	}
 	if (!built_in_found)
-	{
-		printf("i'm in calling execs");
-		handle_execs(tokens);
-	}
-
+		handle_execs(tokens, env);
+        
 	for (i = 0; i < token_count; i++)
-	{
-		free(tokens[i]);
-	}
+                free(tokens[i]);
+	
 	free(tokens);
 	return (0);
 }
