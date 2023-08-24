@@ -35,7 +35,10 @@ int handle_tokens(char *lineptr, char *env[])
 		token = strtok(NULL, delimiter);
 	}
 	if (strcmp(tokens[0], "env") == 0)
+	{
 		print_env(env);
+		built_in_found = true;
+	}
 	for (j = 0; j < sizeof(built_in_commands) / sizeof(Command); ++j)
 	{
 		if (strncmp(tokens[0], built_in_commands[j].name,
@@ -45,7 +48,7 @@ int handle_tokens(char *lineptr, char *env[])
 			built_in_commands[j].handler(tokens);
 		}
 	}
-	if (!built_in_found || tokens[0] == "env")
+	if (!built_in_found)
 		handle_execs(tokens, env);
 	for (i = 0; i < token_count; i++)
 		free(tokens[i]);
