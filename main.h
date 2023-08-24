@@ -14,8 +14,8 @@ typedef bool (*CommandHandler)(char **);
 
 typedef struct
 {
-        char *name;
-        CommandHandler handler;
+	char *name;
+	CommandHandler handler;
 } Command;
 
 void handle_builtin(char *lineptr);
@@ -25,7 +25,6 @@ void print_env(char *env[]);
 bool handle_echo(char *tokens[]);
 void handle_PATH(char *tokens[], char *env[]);
 int handle_execs(char *tokens[], char *env[]);
- 
 
 extern Command built_in_commands[];
 extern int token_count;

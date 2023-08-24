@@ -8,7 +8,7 @@
 bool handle_exit(char *tokens[])
 {
 	if (strcmp(tokens[0], "exit") == 0)
-		kill (pid, SIGTERM);
+		kill(pid, SIGTERM);
 	return (true);
 }
 
@@ -20,12 +20,12 @@ bool handle_exit(char *tokens[])
  */
 void print_env(char *env[])
 {
-        int i;
+	int i;
 
 	for (i = 0; env[i] != NULL; i++)
-        {
-                printf("%s\n", env[i]);
-        }
+	{
+		printf("%s\n", env[i]);
+	}
 }
 /**
  * handle_echo - Handle the echo built-in command.
@@ -44,4 +44,3 @@ bool handle_echo(char *tokens[])
 	printf("\n");
 	return (true);
 }
-

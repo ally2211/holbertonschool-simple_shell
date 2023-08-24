@@ -1,8 +1,9 @@
 #include "main.h"
 
-/*
+/**
  * handle_execs - Function to execute tokenized string
  * @tokens: tokenized string
+ * @env: environment variable
  *
  * Return: 1 for SUCCESS
  */
@@ -22,6 +23,6 @@ int handle_execs(char *tokens[], char *env[])
 	{
 		perror("execve");
 		return (1);
-	}	
-	return (0); 
+	}
+	return (0);
 }

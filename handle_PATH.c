@@ -23,29 +23,26 @@ void handle_PATH(char *tokens[], char *env[])
 			break;
 		}
 	}
-
 	if (path_env == NULL)
 	{
 		fprintf(stderr, "PATH environment variable not found.\n");
 		exit(EXIT_FAILURE);
 	}
-	
 	path_copy = strdup(path_env);
 	path_token = strtok(path_copy, ":");
-
 	/* Check each directory in PATH for the executable */
 	while (path_token != NULL)
 	{
 		strncpy(command_path, path_token, sizeof(command_path));
 		strncat(command_path, "/", sizeof(command_path) - strlen(command_path) - 1);
-		strncat(command_path, tokens[0], sizeof(command_path) - strlen(command_path) - 1);
+		strncat(command_path, tokens[0],
+			sizeof(command_path) - strlen(command_path) - 1);
 		/* Attempt to execute the command */
-		execve(command_path, tokens, env);
-
+		if (execve(command_path, tokens, env) == 0)
+			exit (1);
 		/* Move to the next directory in PATH */
 		path_token = strtok(NULL, ":");
 	}
-
 	/*  command was not found in any of the directories */
 	fprintf(stderr, "Command not found: %s\n", tokens[0]);
 	free(path_copy);
