@@ -34,8 +34,6 @@ int handle_tokens(char *lineptr, char *env[])
 		token_count++;
 		token = strtok(NULL, delimiter);
 	}
-	for (i = 0; i <= token_count; i++)
-		printf("token %d is %s \n", i, tokens[i]);
 	if (strcmp(tokens[0], "env") == 0)
 		print_env(env);
 	for (j = 0; j < sizeof(built_in_commands) / sizeof(Command); ++j)
