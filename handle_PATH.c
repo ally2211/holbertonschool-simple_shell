@@ -3,6 +3,7 @@
 /**
  * handle_PATH - Handle other using PATH env.
  * @tokens: An array of tokens from the input string.
+ * @env: environment variables
  */
 void handle_PATH(char *tokens[], char *env[])
 {
@@ -39,7 +40,7 @@ void handle_PATH(char *tokens[], char *env[])
 			sizeof(command_path) - strlen(command_path) - 1);
 		/* Attempt to execute the command */
 		if (execve(command_path, tokens, env) == 0)
-			exit (1);
+			exit(1);
 		/* Move to the next directory in PATH */
 		path_token = strtok(NULL, ":");
 	}
