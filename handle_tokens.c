@@ -34,6 +34,8 @@ int handle_tokens(char *lineptr, char *env[])
 		token_count++;
 		token = strtok(NULL, delimiter);
 	}
+	tokens = realloc(tokens, (token_count + 1) * sizeof(char *));
+	tokens[token_count] = NULL;
 	if (strcmp(tokens[0], "env") == 0)
 	{
 		print_env(env);
